@@ -12,7 +12,7 @@ export default class TambahOs extends Component {
       nomorRuang: '',
       scedule: '',
       DPJP: '',
-      visite: '',
+      task: '',
     };
   }
 
@@ -23,7 +23,7 @@ export default class TambahOs extends Component {
   };
 
   onSubmit = () => {
-    if(this.state.nama && this.state.nomorRuang && this.state.scedule && this.state.DPJP && this.state.visite) {
+    if(this.state.nama && this.state.nomorRuang && this.state.scedule && this.state.DPJP && this.state.task) {
       
       const pasienReferensi = FIREBASE.database().ref('pasien');
       const pasien = {
@@ -31,7 +31,7 @@ export default class TambahOs extends Component {
         nomorRuang: this.state.nomorRuang,
         scedule: this.state.scedule,
         DPJP: this.state.DPJP,
-        visite: this.state.visite,
+        task: this.state.task,
       }
 
       pasienReferensi
@@ -46,7 +46,7 @@ export default class TambahOs extends Component {
 
 
       }else {
-        Alert.alert('Error', 'Nama Pasien, No. Ruangan, Scedule Medis, DPJP, dan visite wajib diisi');
+        Alert.alert('Error', 'Nama Pasien, No. Ruangan, Scedule Medis, DPJP, dan task wajib diisi');
       }
       
     };
@@ -89,12 +89,12 @@ export default class TambahOs extends Component {
         />
 
         <InputData
-          label="Advice"
-          placeholder="Advice dokter/ belum visite"
+          label="Task"
+          placeholder="Red/Yellow/Green"
           isTextArea={true}
           onChangeText={this.onChangeText}
           value={this.state.visite}
-          namaState="visite"
+          namaState="task"
         />
 
         <TouchableOpacity style={styles.tombol} onPress={() => this.onSubmit()}>

@@ -9,10 +9,11 @@ const DaftarPasien = ({id, pasienItem, navigation, removeData}) => {
       style={styles.container}
       onPress={() => navigation.navigate('ListPasien', {id: id})}>
       <View>
-        <Image source={require('./../../assets/dokFemale.png')} />
+        <Image source={require('./../../assets/pasien.png')} />
         <Text style={styles.nama}>{pasienItem.nama}</Text>
-        <Text style={styles.noRuang}>{pasienItem.nomorRuang}</Text>
-        <Text style={styles.DPJP}>{pasienItem.DPJP}</Text>
+        <Text style={styles.noRuang}>Room: {pasienItem.nomorRuang}</Text>
+        <Text style={styles.DPJP}>Dokter: {pasienItem.DPJP}</Text>
+        <Text style={styles.task}>Task: {pasienItem.task}</Text>
       </View>
       <View style={styles.icon}>
         <FontAwesomeIcon icon={faEdit} color={'orange'} size={25} onPress={() => navigation.navigate('EditPasien', {id: id})}/>
@@ -29,8 +30,8 @@ export default DaftarPasien;
 const styles = StyleSheet.create({
   container: {
     marginRight: 10,
-    width: 110,
-    height: 140,
+    width: 140,
+    height: 180,
     flexDirection: 'row',
     padding: 15,
     backgroundColor: 'white',
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
   },
   nama: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
     alignItems: 'center',
   },
   noRuang: {
@@ -57,6 +58,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   DPJP: {
+    fontSize: 12,
+    color: 'gray',
+    alignItems: 'center',
+  },
+  task: {
     fontSize: 12,
     color: 'gray',
     alignItems: 'center',

@@ -41,7 +41,7 @@ export default class DetailPasien extends Component {
         <Text style={styles.text}>{pasien.DPJP} </Text>
 
         <Text>Visite: </Text>
-        <Text style={styles.text}>{pasien.visite} </Text>
+        <Text style={styles.text}>{pasien.task} </Text>
       </View>
     );
   }

@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, TouchableOpacity, Alert, ScrollView, Image} from 'react-native';
+import {Text, StyleSheet, View, TouchableOpacity, Alert, ScrollView, Image, Dimensions} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faPlus, faUser} from '@fortawesome/free-solid-svg-icons';
 import FIREBASE from '../../config/FIREBASE';
 import DaftarPasien from '../../components/DaftarPasien';
-import Dokter from '../Dokter'
+import Dokter from '../Dokter';
+import Carousel from '../Carousel';
+import Video from '../Video';
+import RunningText from '../RunningText';
+import Drug from '../Drug';
+import DosisObat from '../DosisObat';
+import DosisObatEmergency from '../DosisObatEmergency';
+import Info from '../Info';
+import Notif from '../Notif';
 
 export default class Home extends Component {
   constructor(props) {
@@ -63,7 +71,10 @@ export default class Home extends Component {
     const {pasiens, pasiensKey} = this.state;
     return (
       <View style={styles.page}>
-        <View style={styles.header}>
+        <View style={styles.header}> 
+        <ScrollView showsVerticalScrollIndicator={false}>
+        <RunningText />
+          <Carousel />
           <Text style={styles.title}>Daftar Pasien</Text>
           <View style={styles.garis} />
           <View>
@@ -72,6 +83,10 @@ export default class Home extends Component {
                 style={styles.btnTambah}
                 onPress={() => this.props.navigation.navigate('TambahOs')}>
                 <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
+                <View>
+                <FontAwesomeIcon style={styles.plus} icon={faPlus} size={18} color={'white'} />
+                <Text style={styles.text}>TAMBAH PASIEN</Text>
+                </View>
               </TouchableOpacity>
           </View>
           <View style={styles.wrapperScroll}>
@@ -88,7 +103,7 @@ export default class Home extends Component {
                   />
                 ))
               ) : (
-                <Text>Daftar Kosong</Text>
+                <Text style={styles.zero}>Daftar Kosong</Text>
               )}
               </View>
             </ScrollView>
@@ -97,7 +112,24 @@ export default class Home extends Component {
           <Text style={styles.subtitle}>Daftar Dokter</Text>
           <View style={styles.garis} />
             <Dokter />
-      </View>
+            <Text style={styles.subtitle}>Rumus Dosis Obat</Text>
+            <View style={styles.garis} />
+            <Video />
+            <Text style={styles.subtitle}>Mencari Obat</Text>
+            <View style={styles.garis} />
+            <Drug />
+            <Text style={styles.subtitle}>Kalkulator Dosis Obat</Text>
+            <View style={styles.garis} />
+            <DosisObat />
+            <Text style={styles.DosisObatEmergency}>Kalkulator Dosis Obat Emergency</Text>
+            <View style={styles.garis} />
+            <DosisObatEmergency />
+             <Text style={styles.news}>Seputar Perawat dan Loker Medis</Text>
+            <View style={styles.garis} />
+            <Info />
+            <Notif />
+          </ScrollView>
+        </View>
       </View>
     );
   }
@@ -109,14 +141,14 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 30,
-    paddingTop: 30,
+    paddingTop: 26,
   },
   title: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
     marginTop: 10,
   },
@@ -135,6 +167,19 @@ const styles = StyleSheet.create({
     right: 0,
     margin: 30,
   },
+  plus: {
+    marginTop: -20,
+    marginLeft: 26,
+  },
+  zero: {
+    marginLeft: 14
+  },
+  text: {
+    marginTop: -20,
+    marginLeft: 80,
+    color: 'white',
+    fontSize: 16,
+  },
   wrapperScroll: {marginHorizontal: -16, paddingRight: 10, paddingLeft: 10},
   category: {flexDirection: 'row'},
   btnTambah: {
@@ -151,4 +196,14 @@ const styles = StyleSheet.create({
 
     elevation: 5,
   },
+  DosisObatEmergency: {
+    marginTop: 50,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  news: {
+    marginTop: 50,
+    fontSize: 16,
+    fontWeight: 'bold',
+  }
 });

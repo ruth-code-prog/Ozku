@@ -12,7 +12,7 @@ export default class EditPasien extends Component {
       nomorRuang: '',
       scedule: '',
       DPJP: '',
-      visite: '',
+      task: '',
     };
   }
 
@@ -28,7 +28,7 @@ export default class EditPasien extends Component {
           nomorRuang: pasienItem.nomorRuang,
           scedule: pasienItem.scedule,
           DPJP: pasienItem.DPJP,
-          visite: pasienItem.visite,
+          task: pasienItem.task,
         });
       });
   }
@@ -40,7 +40,7 @@ export default class EditPasien extends Component {
   };
 
   onSubmit = () => {
-    if(this.state.nama && this.state.nomorRuang && this.state.scedule && this.state.DPJP && this.state.visite) {
+    if(this.state.nama && this.state.nomorRuang && this.state.scedule && this.state.DPJP && this.state.task) {
       
       const pasienReferensi = FIREBASE.database().ref('pasien/'+ this.props.route.params.id);
 
@@ -49,7 +49,7 @@ export default class EditPasien extends Component {
         nomorRuang: this.state.nomorRuang,
         scedule: this.state.scedule,
         DPJP: this.state.DPJP,
-        visite: this.state.visite,
+        task: this.state.task,
       }
 
       pasienReferensi
@@ -64,7 +64,7 @@ export default class EditPasien extends Component {
 
 
     }else {
-      Alert.alert('Error', 'Nama, Nomor Ruang, Scedule, DPJP, dan visite wajib diisi');
+      Alert.alert('Error', 'Nama, Nomor Ruang, Scedule, DPJP, dan task wajib diisi');
     }
     
   };
@@ -107,12 +107,12 @@ export default class EditPasien extends Component {
         />
 
         <InputData
-          label="Visite"
-          placeholder="Advice/ belum visite"
+          label="Task"
+          placeholder="Red/Yellow/Green"
           isTextArea={true}
           onChangeText={this.onChangeText}
-          value={this.state.visite}
-          namaState="visite"
+          value={this.state.task}
+          namaState="task"
         />
 
         <TouchableOpacity style={styles.tombol} onPress={() => this.onSubmit()}>

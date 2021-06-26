@@ -29,6 +29,9 @@ const Dokter = () => {
                     <DokterCategory
                     key={`category-${item.id}`}
                     category={item.category}
+                    total={item.total}
+                    kamar={item.kamar}
+                    image={item.image}
                 />
                 );
             })}          

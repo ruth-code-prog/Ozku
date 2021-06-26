@@ -1,4 +1,4 @@
-package com.reactnativefirebase;
+package com.perawat;
 
 import com.facebook.react.ReactActivity;
 
