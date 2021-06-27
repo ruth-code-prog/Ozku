@@ -7,7 +7,7 @@ export default class Example extends PureComponent {
     return(
       <View style={styles.container}>
         <TextTicker
-          style={{ fontSize: 18 }}
+          style={{ fontSize: 18, color: '#FBFCFC' }}
           duration={24000}
           loop
           bounce

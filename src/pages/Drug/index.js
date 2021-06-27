@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TextInput, ListItem } from 'react-native';
+import { View, Text, FlatList, TextInput, StyleSheet, ListItem } from 'react-native';
 
 class SearchFunction extends Component {
   constructor(props) {
@@ -49,6 +49,7 @@ class SearchFunction extends Component {
           height: 1,
           width: '100%',
           backgroundColor: '#CED0CE',
+          color: '#F5FCFF',
         }}
       />
     );
@@ -70,12 +71,14 @@ class SearchFunction extends Component {
 
   renderHeader = () => {
     return (
-      <TextInput
-        style={{ height: 60, borderColor: '#000', borderWidth: 1, borderRadius: 10 }}
-        placeholder="   Masukkan Dx Medis"
-        onChangeText={text => this.searchItems(text)}
-        value={this.state.value}
-      />
+      <View style={styles.container}>
+        <TextInput
+          style={{ height: 60, borderColor: '#000', borderWidth: 1, borderRadius: 10, width: '90%' }}
+          placeholder="   Masukkan Dx Medis"
+          onChangeText={text => this.searchItems(text)}
+          value={this.state.value}
+        />
+      </View>
     );
   };
 
@@ -84,15 +87,15 @@ class SearchFunction extends Component {
       <View
         style={{
           flex: 1,
-          padding: 25,
-          width: '98%',
+          padding: 2,
+          width: '100%',
           alignSelf: 'center',
           justifyContent: 'center',
         }}>
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (
-            <Text style={{ padding: 10 }}>{item.name} </Text>
+            <Text style={{ padding: 10, color: '#F5FCFF' }}>{item.name} </Text>
           )}
           keyExtractor={item => item.name}
           ItemSeparatorComponent={this.renderSeparator}
@@ -104,3 +107,14 @@ class SearchFunction extends Component {
 }
 
 export default SearchFunction;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+  }
+})

@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from "react";
-import {Text, StyleSheet, View, TextInput, Button, ToucableOpacity} from 'react-native';
+import {Text, StyleSheet, View, TextInput, Button,  Pressable , ToucableOpacity} from 'react-native';
 import {faCalculator} from '@fortawesome/free-solid-svg-icons';
 
 export default function DosisObat() {
@@ -25,7 +25,7 @@ getClear = () => {
 
 
   return (
-    <View className="DosisObat">
+    <View className="DosisObat" style={styles.container}>
         <TextInput 
         style={styles.input} 
         onChangeText={setInput1}  
@@ -59,14 +59,14 @@ getClear = () => {
         Hasil: {result}</Text>
 
         <Button
-          style={{fontSize: 20, color: 'green'}}
+          color="#27AE60"
           onPress={() => setResult(getCalculate)}
           title="Calculate Hasil"
         >
         </Button>
 
         <Button
-          style={{fontSize: 20, color: 'green'}}
+          color="#FA8072"
           onPress={() => setResult(getClear)}
           title="Hapus Hasil"
         >
@@ -110,12 +110,20 @@ getClear = () => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#F5FCFF',
+      borderRadius: 8,
+    },
     input: {
         margin: 5,
         height: 40,
         margin: 12,
         borderWidth: 1,
         borderRadius: 20,
+        width: '90%'
     },
     keterangan: {
         fontWeight: 'bold',

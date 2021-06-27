@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import FIREBASE from '../../config/FIREBASE';
 
 export default class ListPasien extends Component {
@@ -27,32 +28,39 @@ export default class ListPasien extends Component {
   render() {
     const {pasien} = this.state;
     return (
-      <View style={styles.pages}>
-        <Text>Nama Pasien: </Text>
-        <Text style={styles.text}>{pasien.nama} </Text>
+      <View style={styles.container}>
+        <ScrollView style={styles.pages}>
+          <Text>Nama Pasien: </Text>
+          <Text style={styles.text}>{pasien.nama} </Text>
 
-        <Text>Nomor Ruangan : </Text>
-        <Text style={styles.text}>{pasien.nomorRuang} </Text>
+          <Text>Nomor Ruangan : </Text>
+          <Text style={styles.text}>{pasien.nomorRuang} </Text>
 
-        <Text>Scedule Medis : </Text>
-        <Text style={styles.text}>{pasien.scedule} </Text>
+          <Text>Scedule Medis : </Text>
+          <Text style={styles.text}>{pasien.scedule} </Text>
 
-        <Text>DPJP / Co: </Text>
-        <Text style={styles.text}>{pasien.DPJP} </Text>
+          <Text>DPJP / Co: </Text>
+          <Text style={styles.text}>{pasien.DPJP} </Text>
 
-        <Text>Task: </Text>
-        <Text style={styles.text}>{pasien.task} </Text>
+          <Text>Task: </Text>
+          <Text style={styles.text}>{pasien.task} </Text>
+        </ScrollView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#34495E',
+        flex: 1,
+    },
     pages : {
         margin: 30,
         padding: 20,
-        backgroundColor: 'white',
+        backgroundColor: '#F8C471',
         shadowColor: '#000',
+        borderRadius: 10,
         shadowOffset: {
           width: 0,
           height: 2,

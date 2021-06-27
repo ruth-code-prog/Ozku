@@ -71,7 +71,8 @@ export default class EditPasien extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.pages}>
+      <View style={styles.container}>
+        <ScrollView style={styles.pages}>
         <InputData
           label="Nama Pasien"
           placeholder="Masukkan Nama Pasien"
@@ -119,14 +120,21 @@ export default class EditPasien extends Component {
           <Text style={styles.textTombol}>SIMPAN</Text>
         </TouchableOpacity>
       </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  pages: {
+  container: {
+    backgroundColor: '#34495E',
     flex: 1,
+  },
+  pages: {
+    margin: 10,
+    backgroundColor: '#F8C471',
     padding: 30,
+    borderRadius: 10,
   },
   tombol: {
     backgroundColor: 'green',

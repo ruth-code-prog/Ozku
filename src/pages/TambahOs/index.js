@@ -53,62 +53,71 @@ export default class TambahOs extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.pages}>
-        <InputData
-          label="Nama Pasien"
-          placeholder="Masukkan Nama"
-          onChangeText={this.onChangeText}
-          value={this.state.nama}
-          namaState="nama"
-        />
-         <InputData
-          label="No. Ruangan"
-          placeholder="Masukkan No. Ruangan"
-          keyboardType="number-pad"
-          onChangeText={this.onChangeText}
-          value={this.state.nomorRuang}
-          namaState="nomorRuang"
-        />
+      <View style={styles.container}>
+        <ScrollView style={styles.pages}>
+          <InputData
+            label="Nama Pasien"
+            placeholder="Masukkan Nama"
+            onChangeText={this.onChangeText}
+            value={this.state.nama}
+            namaState="nama"
+          />
+          <InputData
+            label="No. Ruangan"
+            placeholder="Masukkan No. Ruangan"
+            keyboardType="number-pad"
+            onChangeText={this.onChangeText}
+            value={this.state.nomorRuang}
+            namaState="nomorRuang"
+          />
 
-        <InputData
-          label="Scedule Medis"
-          placeholder="Masukkan Scedule Medis"
-          isTextArea={true}
-          onChangeText={this.onChangeText}
-          value={this.state.scedule}
-          namaState="scedule"
-        />
+          <InputData
+            label="Scedule Medis"
+            placeholder="Masukkan Scedule Medis"
+            isTextArea={true}
+            onChangeText={this.onChangeText}
+            value={this.state.scedule}
+            namaState="scedule"
+          />
 
-        <InputData
-          label="DPJP-consule"
-          placeholder="Nama DPJP / Nama Dr. Co"
-          isTextArea={true}
-          onChangeText={this.onChangeText}
-          value={this.state.DPJP}
-          namaState="DPJP"
-        />
+          <InputData
+            label="DPJP-consule"
+            placeholder="Nama DPJP / Nama Dr. Co"
+            isTextArea={true}
+            onChangeText={this.onChangeText}
+            value={this.state.DPJP}
+            namaState="DPJP"
+          />
 
-        <InputData
-          label="Task"
-          placeholder="Red/Yellow/Green"
-          isTextArea={true}
-          onChangeText={this.onChangeText}
-          value={this.state.visite}
-          namaState="task"
-        />
+          <InputData
+            label="Task"
+            placeholder="Red/Yellow/Green"
+            isTextArea={true}
+            onChangeText={this.onChangeText}
+            value={this.state.visite}
+            namaState="task"
+          />
 
-        <TouchableOpacity style={styles.tombol} onPress={() => this.onSubmit()}>
-          <Text style={styles.textTombol}>SIMPAN</Text>
-        </TouchableOpacity>
-      </ScrollView>
+          <TouchableOpacity style={styles.tombol} onPress={() => this.onSubmit()}>
+            <Text style={styles.textTombol}>SIMPAN</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#34495E',
+    flex: 1,
+  },
   pages: {
+    margin: 10,
     flex: 1,
     padding: 30,
+    backgroundColor: '#F8C471',
+    borderRadius: 10,
   },
   tombol: {
     backgroundColor: 'green',

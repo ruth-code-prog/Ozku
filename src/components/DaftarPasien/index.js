@@ -30,6 +30,7 @@ export default DaftarPasien;
 const styles = StyleSheet.create({
   container: {
     marginRight: 10,
+    marginLeft: 12,
     width: 140,
     height: 180,
     flexDirection: 'row',
@@ -72,5 +73,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    marginLeft: 12,
   },
 });

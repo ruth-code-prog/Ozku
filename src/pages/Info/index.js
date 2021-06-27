@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Linking, ScrollView} from 'react-native'
 import FIREBASE from '../../config/FIREBASE';
 import NewsItem from '../../components/NewsItem';
 
@@ -21,16 +21,22 @@ const Info = () => {
       });
   }, []);
 
+  const openNews = (url) => {
+    Linking.openURL('https://' + url)
+  }
+
     return (
     <View style={styles.container}>
             {news.map(item => {
                 return (
+                  <TouchableOpacity onPress={() => openNews(item.link)} key={item.id}>
                     <NewsItem
                     key={`news-${item.id}`}
                     title={item.title}
                     body={item.body}
                     image={item.image}
                     />
+                  </TouchableOpacity>
                     );
             })}          
     </View>
@@ -41,7 +47,7 @@ export default Info
 const styles = StyleSheet.create({
     container: {
     fontSize: 16,
-    marginTop: 30,
+    marginTop: 10,
     marginBottom: 16,
     }
 });

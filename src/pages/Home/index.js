@@ -76,7 +76,6 @@ export default class Home extends Component {
         <RunningText />
           <Carousel />
           <Text style={styles.title}>Daftar Pasien</Text>
-          <View style={styles.garis} />
           <View>
           <View style={styles.wrapperUser}>
               <TouchableOpacity
@@ -113,19 +112,14 @@ export default class Home extends Component {
           <View style={styles.garis} />
             <Dokter />
             <Text style={styles.subtitle}>Rumus Dosis Obat</Text>
-            <View style={styles.garis} />
             <Video />
             <Text style={styles.subtitle}>Mencari Obat</Text>
-            <View style={styles.garis} />
             <Drug />
-            <Text style={styles.subtitle}>Kalkulator Dosis Obat</Text>
-            <View style={styles.garis} />
+            <Text style={styles.KalkulatorDosisObat}>Kalkulator Dosis Obat</Text>
             <DosisObat />
             <Text style={styles.DosisObatEmergency}>Kalkulator Dosis Obat Emergency</Text>
-            <View style={styles.garis} />
             <DosisObatEmergency />
              <Text style={styles.news}>Seputar Perawat dan Loker Medis</Text>
-            <View style={styles.garis} />
             <Info />
             <Notif />
           </ScrollView>
@@ -138,23 +132,23 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
+    backgroundColor: '#34495E',
   },
   header: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 12,
     paddingTop: 26,
   },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#FBFCFC',
+    marginTop: 10,
   },
   subtitle: {
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 10,
-  },
-  garis: {
-    borderWidth: 1,
-    marginTop: 10,
+    color: '#FBFCFC',
   },
   listPasien: {
     paddingHorizontal: 30,
@@ -180,9 +174,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
-  wrapperScroll: {marginHorizontal: -16, paddingRight: 10, paddingLeft: 10},
+  wrapperScroll: {marginHorizontal: -16, paddingRight: 10, paddingLeft: 10, marginTop: 6},
   category: {flexDirection: 'row'},
   btnTambah: {
+    marginTop: 8,
     padding: 20,
     backgroundColor: 'skyblue',
     borderRadius: 30,
@@ -197,13 +192,21 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   DosisObatEmergency: {
-    marginTop: 50,
+    marginTop: 40,
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#FBFCFC',
   },
   news: {
     marginTop: 50,
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#FBFCFC',
+  },
+  KalkulatorDosisObat: {
+    marginTop: 40,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FBFCFC',
   }
 });

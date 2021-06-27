@@ -1,9 +1,5 @@
 import React from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
   StyleSheet,
   Platform,
 } from 'react-native';
@@ -13,27 +9,17 @@ import {FlatListSlider} from 'react-native-flatlist-slider';
 const images = [
     {
         banner: require('./../../assets/nurse.jpg'),
-        desc:
-          'Red fort in India New Delhi is a magnificient masterpeiece of humans',
     },
     {
         banner: require('./../../assets/nurse2.jpg'),
-        desc: 'Silent Waters in the mountains in midst of Himilayas',
     },
     {
         banner: require('./../../assets/team.jpg'),
-        desc: 'Silent Waters in the mountains in midst of Himilayas',
     },
    ]
  
 export default (Preview = ({
-  style,
-  item,
-  imageKey,
-  onPress,
-  index,
-  active,
-  local,
+
 }) => {
   return (
     <FlatListSlider style={styles.banner}
