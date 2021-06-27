@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View,  TouchableOpacity} from 'react-native';
+import TabItem from '../TabItem';
 
 const BottomTabNavigator = ({state, descriptors, navigation}) => {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
@@ -41,16 +42,12 @@ const BottomTabNavigator = ({state, descriptors, navigation}) => {
         };
 
         return (
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={{flex: 1}}>
-            <Text style={{color: isFocused ? '#673ab7' : '#222'}}>{label}</Text>
-          </TouchableOpacity>
+         <TabItem
+         key={index}
+         isFocused={isFocused}
+         label={label}
+         onLongPress={onLongPress}
+         onPress={onPress} />
         );
       })}
     </View>
@@ -64,7 +61,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#F39C12',
         justifyContent: 'space-between',
-        paddingVertical: 30,
+        paddingVertical: 16,
         paddingHorizontal: 30,
         borderRadius: 40,
         marginVertical: 20,
