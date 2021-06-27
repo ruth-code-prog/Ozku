@@ -45,7 +45,7 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center",marginTop: 12, marginBottom: 12,},
+  container: { justifyContent: "center",marginTop: 12, marginBottom: 12,},
   //url: {marginTop: 6}
 });
 
