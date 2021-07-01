@@ -1,12 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import Info from '../Info';
 
 const Informasi = () => {
   return (
-    <View style={styles.page}>
-      <Text style={styles.news}>Seputar Perawat dan Loker Medis</Text>
-      <Info />
+    <View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.page}>
+          <Text style={styles.news}>Seputar Perawat dan Loker Medis</Text>
+          <Info />
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -25,7 +29,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: '#FBFCFC',
   },
-   news: {
+  news: {
     marginTop: 8,
     fontSize: 16,
     fontWeight: 'bold',

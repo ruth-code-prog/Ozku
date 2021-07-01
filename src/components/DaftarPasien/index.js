@@ -9,17 +9,31 @@ const DaftarPasien = ({id, pasienItem, navigation, removeData}) => {
       style={styles.container}
       onPress={() => navigation.navigate('ListPasien', {id: id})}>
       <View>
+        <View style={styles.icon}>
+          <FontAwesomeIcon
+            style={styles.edit}
+            icon={faEdit}
+            color={'orange'}
+            size={25}
+            onPress={() => navigation.navigate('EditPasien', {id: id})}
+          />
+        </View>
+        <View>
+          <FontAwesomeIcon
+            style={styles.remove}
+            icon={faTimes}
+            color={'red'}
+            size={25}
+            onPress={() => removeData(id)}
+          />
+        </View>
         <Image source={require('./../../assets/pasien.png')} />
-        <Text style={styles.nama}>{pasienItem.nama}</Text>
-        <Text style={styles.noRuang}>Room: {pasienItem.nomorRuang}</Text>
-        <Text style={styles.DPJP}>Dokter: {pasienItem.DPJP}</Text>
-        <Text style={styles.task}>Task: {pasienItem.task}</Text>
-      </View>
-      <View style={styles.icon}>
-        <FontAwesomeIcon icon={faEdit} color={'orange'} size={25} onPress={() => navigation.navigate('EditPasien', {id: id})}/>
       </View>
       <View>
-        <FontAwesomeIcon icon={faTimes} color={'red'} size={25} onPress={() => removeData(id)}/>
+        <Text style={styles.nama}>{pasienItem.nama}</Text>
+        <Text style={styles.noRuang}>Room: {pasienItem.nomorRuang}</Text>
+        <Text style={styles.dpjp}>Dokter: {pasienItem.DPJP}</Text>
+        <Text style={styles.task}>Task: {pasienItem.task}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -32,11 +46,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 12,
     width: 140,
-    height: 180,
+    height: 200,
     flexDirection: 'row',
     padding: 15,
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 10,
     marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: {
@@ -49,30 +63,51 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   nama: {
+    justifyContent: 'flex-start',
+    marginTop: 100,
+    margin: -80,
     fontWeight: 'bold',
     fontSize: 14,
     alignItems: 'center',
   },
   noRuang: {
+    position: 'absolute',
+    marginTop: 2,
+    margin: -80,
+    marginTop: 120,
     fontSize: 12,
     color: 'gray',
     alignItems: 'center',
   },
-  DPJP: {
+  dpjp: {
+    position: 'absolute',
+    marginTop: 180,
+    margin: -80,
+    marginTop: 140,
     fontSize: 12,
     color: 'gray',
     alignItems: 'center',
   },
   task: {
+    position: 'absolute',
+    marginTop: 160,
+    margin: -80,
     fontSize: 12,
     color: 'gray',
     alignItems: 'center',
   },
-  icon: {
-    flexDirection: 'row',
+  edit: {
+    position: 'absolute',
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginLeft: 12,
+    marginLeft: 90,
+    marginTop: 10,
+  },
+  remove: {
+    position: 'absolute',
+    flex: 1,
+    marginLeft: 90,
+    marginTop: 60,
   },
 });

@@ -44,5 +44,5 @@ const styles = StyleSheet.create({
    // color: colors.text.secondary,
     marginTop: 4,
   },
-  image: {width: 298, height: 200, borderRadius: 11},
+  image: {width: 318, height: 200, borderRadius: 11},
 });

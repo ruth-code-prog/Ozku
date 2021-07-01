@@ -1,20 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 
-export default function DokterCategory({category, onPress, total, kamar, image}) {
-    const Icon = () => {
-        if (category === 'Prawito', 'Angga') {
-            return <Image source={require('./../../assets/dokMale.png')} style={styles.illustration} />;
-          };
-        return <Image source={require('./../../assets/dokFemale.png')} />;
-    }
-
+export default function HeadlineItem({headline, onPress, title, subtitle, page, image}) {
+   
     return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
         <Image source={{uri: image}} style={styles.image} />
-        <Text style={styles.category}>Dokter {category}</Text>
-        <Text style={styles.kamar}>{kamar}</Text>
-        <Text style={styles.total}>Pasien: {total}</Text>
+        <Text style={styles.headline}>{headline}</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Text style={styles.page}>{page}</Text>
     </TouchableOpacity>
     )
 }
@@ -29,6 +24,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         shadowColor: '#000',
         height: 160,
+        width: 270,
         shadowOffset: {
           width: 0,
           height: 2,
@@ -41,7 +37,7 @@ const styles = StyleSheet.create({
       illustration: {
         marginBottom: 28,
       },
-      category: {
+      headline: {
         fontSize: 12,
         color: '#000000',
         marginLeft: 6,
@@ -50,17 +46,24 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#000000'
       },
-      total: {
+      title: {
         fontSize: 12,
         color: '#000000',
-        marginTop: 114,
+        marginTop: 100,
         position: 'absolute',
         marginLeft: 20,
       },
-      kamar: {
+      subtitle: {
         fontSize: 12,
         color: '#000000',
-        marginTop: 98,
+        marginTop: 120,
+        marginLeft: 20,
+        position: 'absolute'
+      }, 
+      page: {
+        fontSize: 12,
+        color: '#000000',
+        marginTop: 140,
         marginLeft: 20,
         position: 'absolute'
       }, 

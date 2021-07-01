@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, TouchableOpacity, Text, Alert, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  Alert,
+  ScrollView,
+} from 'react-native';
 import {InputData} from '../../components';
-import FIREBASE from '../../config/FIREBASE'
+import FIREBASE from '../../config/FIREBASE';
 
 export default class EditPasien extends Component {
   constructor(props) {
@@ -18,7 +25,7 @@ export default class EditPasien extends Component {
 
   componentDidMount() {
     FIREBASE.database()
-      .ref('pasien/'+ this.props.route.params.id)
+      .ref('pasien/' + this.props.route.params.id)
       .once('value', (querySnapShot) => {
         let data = querySnapShot.val() ? querySnapShot.val() : {};
         let pasienItem = {...data};
@@ -40,9 +47,16 @@ export default class EditPasien extends Component {
   };
 
   onSubmit = () => {
-    if(this.state.nama && this.state.nomorRuang && this.state.scedule && this.state.DPJP && this.state.task) {
-      
-      const pasienReferensi = FIREBASE.database().ref('pasien/'+ this.props.route.params.id);
+    if (
+      this.state.nama &&
+      this.state.nomorRuang &&
+      this.state.scedule &&
+      this.state.DPJP &&
+      this.state.task
+    ) {
+      const pasienReferensi = FIREBASE.database().ref(
+        'pasien/' + this.props.route.params.id,
+      );
 
       const pasien = {
         nama: this.state.nama,
@@ -50,76 +64,82 @@ export default class EditPasien extends Component {
         scedule: this.state.scedule,
         DPJP: this.state.DPJP,
         task: this.state.task,
-      }
+      };
 
       pasienReferensi
         .update(pasien)
         .then((data) => {
           Alert.alert('Sukses', 'Terupdate');
-          this.props.navigation.replace('Home');
+          this.props.navigation.replace('MainApp');
         })
         .catch((error) => {
-          console.log("Error : ", error);
-        })
-
-
-    }else {
-      Alert.alert('Error', 'Nama, Nomor Ruang, Scedule, DPJP, dan task wajib diisi');
+          console.log('Error : ', error);
+        });
+    } else {
+      Alert.alert(
+        'Error',
+        'Nama, Nomor Ruang, Scedule, DPJP, dan task wajib diisi',
+      );
     }
-    
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.pages}>
-        <InputData
-          label="Nama Pasien"
-          placeholder="Masukkan Nama Pasien"
-          onChangeText={this.onChangeText}
-          value={this.state.nama}
-          namaState="nama"
-        />
-        <InputData
-          label="No. Ruangan"
-          placeholder="Masukkan No. Ruangan"
-          keyboardType="number-pad"
-          onChangeText={this.onChangeText}
-          value={this.state.nomorRuang}
-          namaState="nomorRuang"
-        />
+      <View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.container}>
+            <ScrollView style={styles.pages}>
+              <InputData
+                label="Nama Pasien"
+                placeholder="Masukkan Nama Pasien"
+                onChangeText={this.onChangeText}
+                value={this.state.nama}
+                namaState="nama"
+              />
+              <InputData
+                label="No. Ruangan"
+                placeholder="Masukkan No. Ruangan"
+                keyboardType="number-pad"
+                onChangeText={this.onChangeText}
+                value={this.state.nomorRuang}
+                namaState="nomorRuang"
+              />
 
-        <InputData
-          label="Scedule Medis"
-          placeholder="Masukkan Scedule Medis"
-          isTextArea={true}
-          onChangeText={this.onChangeText}
-          value={this.state.scedule}
-          namaState="scedule"
-        />
+              <InputData
+                label="Scedule Medis"
+                placeholder="Masukkan Scedule Medis"
+                isTextArea={true}
+                onChangeText={this.onChangeText}
+                value={this.state.scedule}
+                namaState="scedule"
+              />
 
-        <InputData
-          label="DPJP-consule"
-          placeholder="Nama DPJP / Nama Dr. Co"
-          isTextArea={true}
-          onChangeText={this.onChangeText}
-          value={this.state.DPJP}
-          namaState="DPJP"
-        />
+              <InputData
+                label="DPJP-consule"
+                placeholder="Nama DPJP / Nama Dr. Co"
+                isTextArea={true}
+                onChangeText={this.onChangeText}
+                value={this.state.DPJP}
+                namaState="DPJP"
+              />
 
-        <InputData
-          label="Task"
-          placeholder="Red/Yellow/Green"
-          isTextArea={true}
-          onChangeText={this.onChangeText}
-          value={this.state.task}
-          namaState="task"
-        />
+              <InputData
+                label="Task"
+                placeholder="Red/Yellow/Green"
+                isTextArea={true}
+                onChangeText={this.onChangeText}
+                value={this.state.task}
+                namaState="task"
+              />
 
-        <TouchableOpacity style={styles.tombol} onPress={() => this.onSubmit()}>
-          <Text style={styles.textTombol}>SIMPAN</Text>
-        </TouchableOpacity>
-      </ScrollView>
+              <TouchableOpacity
+                style={styles.tombol}
+                onPress={() => this.onSubmit()}>
+                <Text style={styles.textTombol}>SIMPAN</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
+        </ScrollView>
       </View>
     );
   }

@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native'
 import FIREBASE from '../../config/FIREBASE';
-import DokterCategory from '../../components/DokterCategory';
+import HeadlineItem from '../../components/HeadlineItem';
 
-const Dokter = () => {
-    const [category_dokter, setCategoryDokter] = useState ([]);
+const Headline = () => {
+    const [headline, setHeadline] = useState ([]);
 
     useEffect(() => {
     FIREBASE.database()
-      .ref('category_dokter/')
+      .ref('headline/')
       .once('value')
       .then(res => {
-            console.log('category dokter: ', res.val());
+            console.log('headline: ', res.val());
           if (res.val()) {
-            setCategoryDokter(res.val());    
+            setHeadline(res.val());    
         }
       })
       .catch(Error => {
@@ -24,13 +24,14 @@ const Dokter = () => {
     return (
     <View style={styles.container}>
          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {category_dokter.map(item => {
+            {headline.map(item => {
                 return (
-                    <DokterCategory
-                    key={`category-${item.id}`}
-                    category={item.category}
-                    total={item.total}
-                    kamar={item.kamar}
+                    <HeadlineItem
+                    key={`headline-${item.id}`}
+                    headline={item.headline}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    page={item.page}
                     image={item.image}
                 />
                 );
@@ -40,7 +41,7 @@ const Dokter = () => {
     )}    
     
 
-export default Dokter
+export default Headline
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

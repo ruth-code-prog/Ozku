@@ -11,10 +11,11 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faPlus, faUser} from '@fortawesome/free-solid-svg-icons';
 import FIREBASE from '../../config/FIREBASE';
 import DaftarPasien from '../../components/DaftarPasien';
-import Dokter from '../Dokter';
+import Headline from '../Headline';
 import Carousel from '../Carousel';
 import RunningText from '../RunningText';
 import Notif from '../Notif';
+import Developer from '../Developer';
 
 export default class Home extends Component {
   constructor(props) {
@@ -115,9 +116,10 @@ export default class Home extends Component {
                 </ScrollView>
               </View>
             </View>
-            <Text style={styles.subtitle}>Daftar Dokter</Text>
-            <Dokter />
+            <Text style={styles.subtitle}>Headline Info</Text>
+            <Headline />
             <Notif />
+            <Developer />
           </ScrollView>
         </View>
       </View>
