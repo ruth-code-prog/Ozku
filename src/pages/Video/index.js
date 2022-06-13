@@ -1,52 +1,39 @@
-import React, { useCallback } from "react";
-import { Alert, Button, Linking, StyleSheet, View } from "react-native";
+import React, { useState, useCallback, useRef } from "react";
+import {StyleSheet, Modal, Text, View, ScrollView} from 'react-native';
+import { Button, Alert } from "react-native";
+import YoutubePlayer from "react-native-youtube-iframe";
 
-const supportedURL = "https://google.com";
+const Video = ({link, visible, onClose}) => {
+  const [playing, setPlaying] = useState(false);
 
-const dosisobatURL = "https://www.youtube.com/watch?v=S9si163hOWA";
-
-const dobutaminURL = "https://www.youtube.com/watch?v=29kbYuVyTNI";
-
-const dopaminURL = "https://www.youtube.com/watch?v=piV-csQvRvw&t=201s";
-
-const nicardipineURL = "https://www.youtube.com/watch?v=EuUFprk21Xg";
-
-const norepinephrineURL = "https://www.youtube.com/watch?v=kI74YhpP0CM";
-
-
-const OpenURLButton = ({ url, children }) => {
-  const handlePress = useCallback(async () => {
-    // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL(url);
-
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL(url);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${url}`);
+  const onStateChange = useCallback((state) => {
+    if (state === "ended") {
+      setPlaying(false);
+      Alert.alert("video finished!");
     }
-  }, [url]);
+  }, []);
 
-  return <Button title={children} onPress={handlePress} />;
-};
+  const togglePlaying = useCallback(() => {
+    setPlaying((prev) => !prev);
+  }, []);
 
-const App = () => {
   return (
-    <View style={styles.container}>
-      <OpenURLButton url={supportedURL}>Google</OpenURLButton>
-      <OpenURLButton url={dosisobatURL}>DOSIS OBAT</OpenURLButton>
-      <OpenURLButton url={dopaminURL}>DOSIS OBAT DOPAMIN</OpenURLButton>
-      <OpenURLButton url={dobutaminURL}>DOSIS OBAT DOBUTAMIN</OpenURLButton>
-      <OpenURLButton url={nicardipineURL}>DOSIS OBAT NICARDIPINE</OpenURLButton>
-      <OpenURLButton url={norepinephrineURL}>DOSIS OBAT NOREPINEPHRINE</OpenURLButton>
-    </View>
+ <>
+      <Button style={styles.tube} title={playing ? "pause" : "play"} onPress={togglePlaying} />
+      <YoutubePlayer
+        height={200}
+        play={playing}
+        videoId={"IB_pdEHZIsc"}
+        onChangeState={onStateChange}
+      />
+</>
   );
-};
+}
+
+export default Video;
 
 const styles = StyleSheet.create({
-  container: { justifyContent: "center",marginTop: 12, marginBottom: 12,},
-  //url: {marginTop: 6}
+  tube: {
+    
+  }
 });
-
-export default App;

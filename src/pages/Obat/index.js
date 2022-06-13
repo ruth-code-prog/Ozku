@@ -8,11 +8,10 @@ import DosisObatEmergency from '../DosisObatEmergency';
 const Obat = () => {
   return (
     <View style={styles.page}>
-      <View style={styles.header}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={styles.subtitle}>Rumus Dosis Obat</Text>
+          <Text style={styles.subtitle}>Supported By Alo Care Apps</Text>
           <Video />
-          <Text style={styles.subtitle}>Mencari Obat</Text>
+          <Text style={styles.KalkulatorDosisObat}>Mencari Obat</Text>
           <Drug />
           <Text style={styles.KalkulatorDosisObat}>Kalkulator Dosis Obat</Text>
           <DosisObat />
@@ -21,7 +20,6 @@ const Obat = () => {
           </Text>
           <DosisObatEmergency />
         </ScrollView>
-      </View>
     </View>
   );
 };
@@ -35,15 +33,15 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 12,
-    paddingTop: 8,
+    //paddingTop: 8,
     marginBottom: 100,
   },
   subtitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 0,
     marginTop: 10,
     color: '#FBFCFC',
+    textAlign: 'center',
   },
   KalkulatorDosisObat: {
     marginTop: 40,

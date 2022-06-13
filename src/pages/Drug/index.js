@@ -75,6 +75,7 @@ class SearchFunction extends Component {
         <TextInput
           style={{ height: 60, borderColor: '#000', borderWidth: 1, borderRadius: 10, width: '90%' }}
           placeholder="   Masukkan Nama Obat"
+          placeholderTextColor="#000" 
           onChangeText={text => this.searchItems(text)}
           value={this.state.value}
         />

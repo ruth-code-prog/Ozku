@@ -132,8 +132,8 @@ android {
         applicationId "com.perawat"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
-        versionName "5.0"
+        versionCode 11
+        versionName "11.0"
     }
     splits {
         abi {
@@ -189,6 +189,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.facebook.fresco:animated-gif:2.0.0'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules

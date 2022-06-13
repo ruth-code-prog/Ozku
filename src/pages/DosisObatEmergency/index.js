@@ -31,6 +31,7 @@ getClear = () => {
         onChangeText={setInput1}  
         value={input1}
         placeholder="dosis yang di butuhkan"
+        placeholderTextColor="#000" 
         keyboardType="numeric"/>
 
         <TextInput 
@@ -38,6 +39,7 @@ getClear = () => {
         onChangeText={setInput2} 
         value={input2}
         placeholder="Berat Badan Pasien dalam kg"
+        placeholderTextColor="#000" 
         keyboardType="numeric" />
 
         <TextInput 
@@ -45,6 +47,7 @@ getClear = () => {
         onChangeText={setInput3} 
         value={input3}
         placeholder="Satuan Waktu: 60"
+        placeholderTextColor="#000" 
         keyboardType="numeric" />
 
         <TextInput 
@@ -52,11 +55,12 @@ getClear = () => {
         onChangeText={setInput4} 
         value={input4}
         placeholder="Pengencer--> lihat keterangan di bawah ini"
+        placeholderTextColor="#000" 
         keyboardType="numeric" />
 
       <Text 
         value={result}>
-        Hasil: {result}</Text>
+        Hasil: {result || 0}</Text>
 
         <Button
           color="#27AE60"
@@ -116,6 +120,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#F5FCFF',
       borderRadius: 8,
+      marginBottom: 100,
     },
     input: {
         margin: 5,

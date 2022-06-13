@@ -30,6 +30,7 @@ getClear = () => {
         onChangeText={setInput1}  
         value={input1}
         placeholder="dosis yang di butuhkan"
+        placeholderTextColor="#000" 
         keyboardType="numeric"/>
 
         <TextInput 
@@ -37,6 +38,7 @@ getClear = () => {
         onChangeText={setInput2} 
         value={input2}
         placeholder="dosis sediaan"
+        placeholderTextColor="#000" 
         keyboardType="numeric" />
 
         <TextInput 
@@ -44,10 +46,11 @@ getClear = () => {
         onChangeText={setInput3} 
         value={input3}
         placeholder="Pengencer"
+        placeholderTextColor="#000" 
         keyboardType="numeric" />
       <Text 
         value={result}>
-        Hasil: {result}</Text>
+        Hasil: {result || 0}</Text>
 
         <Button
         color="#27AE60"

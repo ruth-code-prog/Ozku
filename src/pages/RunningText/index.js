@@ -1,31 +1,65 @@
-import React, { PureComponent } from 'react'
-import { StyleSheet, View } from 'react-native'
-import TextTicker from 'react-native-text-ticker'
+import React, {Component, useCallback, useEffect, useState} from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import TextTicker from 'react-native-text-ticker';
+import FIREBASE from '../../config/FIREBASE';
 
-export default class Example extends PureComponent {
-  render(){
-    return(
-      <View style={styles.container}>
-        <TextTicker
-          style={{ fontSize: 18, color: '#FBFCFC' }}
-          duration={24000}
-          loop
-          bounce
-          repeatSpacer={50}
-          marqueeDelay={1000}
-        >
-          Selamat Datang di...Perawat Mobile App, Catatan Medis pasien berbasis Digital (Fitur Premium), Kalkulator Dosis Obat, Pencarian Obat dan Info Seputar Perawat serta Loker, Eko Setiaji CEO and Founder Perawat Mobile App (0895600394345), web: ekosetiaji.my.id
-        </TextTicker>
-      </View>
-    )
-  }
+const RunningText = props => {
+  const [runningText, setRunningText] = useState(null);
+
+  useEffect(() => {
+    getRunningText();
+  }, []);
+
+  const getRunningText = () => {
+    FIREBASE.database()
+      .ref('text')
+      .once('value')
+      .then(res => {
+        setRunningText(res?.val());
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
+  return (
+    <View style={styles.runningText}>
+       <Image
+        style={styles.runningTextLogo}
+        source={require('../../assets/megaphone.png')}
+      />
+      {runningText ? (
+            <View style={{flex: 1}}>
+              <TextTicker
+                style={{
+                  fontSize: 16,
+                  color: '#FFFFFF',
+                  fontWeight: 'bold',
+                  //width: Dimensions.get("screen").width - 40,
+                }}
+                duration={20000}
+                loop
+                // bounce
+                repeatSpacer={50}>
+                {runningText}
+              </TextTicker>
+            </View>
+          ) : null}
+    </View>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+export default RunningText
 
+const styles = StyleSheet.create({
+  runningText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  runningTextLogo: {
+    height: 44,
+    width: 44,
+    marginRight: 0,
+  },
+})

@@ -12,9 +12,11 @@ import {faPlus, faUser} from '@fortawesome/free-solid-svg-icons';
 import FIREBASE from '../../config/FIREBASE';
 import DaftarPasien from '../../components/DaftarPasien';
 import Headline from '../Headline';
+import Imt from '../Imt';
 import Carousel from '../Carousel';
 import RunningText from '../RunningText';
 import Notif from '../Notif';
+import InputData from '../../components/InputData';
 import Developer from '../Developer';
 
 export default class Home extends Component {
@@ -23,7 +25,7 @@ export default class Home extends Component {
 
     this.state = {
       pasiens: [],
-      pasiensKey: [],
+      originalPasiens: [],
     };
   }
 
@@ -36,13 +38,34 @@ export default class Home extends Component {
       .ref('pasien')
       .once('value', (querySnapShot) => {
         let data = querySnapShot.val() ? querySnapShot.val() : {};
-        let pasienItem = {...data};
+        let arr = [];
+
+        Object.entries(data).map((val) => {
+          arr.push({
+            id: val[0],
+            nama: val[1]?.nama,
+            dpjp: val[1]?.DPJP,
+            nomorRuang: val[1]?.namaRuang,
+            scedule: val[1]?.scedule,
+            task: val[1]?.task,
+          });
+        });
 
         this.setState({
-          pasiens: pasienItem,
-          pasiensKey: Object.keys(pasienItem),
+          pasiens: arr,
+          originalPasiens: arr,
         });
       });
+  };
+
+  onSearchPatient = (_, searchValue) => {
+    let arr = [...this.state.originalPasiens];
+    var searchRegex = new RegExp(searchValue, 'i');
+    arr = arr.filter((item) => searchRegex?.test(item?.nama?.toLowerCase()));
+    console.log(arr);
+    this.setState({
+      pasiens: arr,
+    });
   };
 
   removeData = (id) => {
@@ -71,39 +94,44 @@ export default class Home extends Component {
   };
 
   render() {
-    const {pasiens, pasiensKey} = this.state;
+    const {pasiens} = this.state;
+    
     return (
       <View style={styles.page}>
-        <View style={styles.header}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <RunningText />
-            <Carousel />
-            <Text style={styles.title}>Daftar Pasien</Text>
-            <View>
-              <View style={styles.wrapperUser}>
-                <TouchableOpacity
-                  style={styles.btnTambah}
-                  onPress={() => this.props.navigation.navigate('TambahOs')}>
-                  <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
-                  <View>
-                    <FontAwesomeIcon
-                      style={styles.plus}
-                      icon={faPlus}
-                      size={18}
-                      color={'white'}
-                    />
-                    <Text style={styles.text}>TAMBAH PASIEN</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.wrapperScroll}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <RunningText />
+          <Carousel />
+          <Text style={styles.title}>Daftar Pasien</Text>
+          <InputData
+              placeholder={'Cari Pasien'}
+              placeholderColor={'white'}
+              onChangeText={this.onSearchPatient}
+            />
+          <View>
+            <View style={styles.wrapperUser}>
+              <TouchableOpacity
+                style={styles.btnTambah}
+                onPress={() => this.props.navigation.navigate('TambahOs')}>
+                <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
+                <View>
+                  <FontAwesomeIcon
+                    style={styles.plus}
+                    icon={faPlus}
+                    size={18}
+                    color={'white'}
+                  />
+                  <Text style={styles.text}>TAMBAH PASIEN</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.wrapperScroll}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   <View style={styles.category}>
-                    {pasiensKey.length > 0 ? (
-                      pasiensKey.map((key) => (
+                    {pasiens.length > 0 ? (
+                      pasiens.map((item, key) => (
                         <DaftarPasien
                           key={key}
-                          pasienItem={pasiens[key]}
+                          pasienItem={item}
                           id={key}
                           {...this.props}
                           removeData={this.removeData}
@@ -115,13 +143,13 @@ export default class Home extends Component {
                   </View>
                 </ScrollView>
               </View>
-            </View>
-            <Text style={styles.subtitle}>Headline Info</Text>
-            <Headline />
-            <Notif />
-            <Developer />
-          </ScrollView>
-        </View>
+          </View>
+          <Text style={styles.subtitle}>Headline Info</Text>
+          <Headline />
+          <Imt />
+          <Notif />
+          <Developer />
+        </ScrollView>
       </View>
     );
   }
@@ -146,7 +174,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: 0,
     color: '#FBFCFC',
   },
   listPasien: {
@@ -166,6 +194,7 @@ const styles = StyleSheet.create({
   },
   zero: {
     marginLeft: 14,
+    color: "#FFFFFF"
   },
   text: {
     marginTop: -20,

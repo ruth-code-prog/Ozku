@@ -8,7 +8,8 @@ const InputData = ({
   isTextArea,
   onChangeText,
   namaState,
-  value
+  value,
+  placeholderColor,
 }) => {
   if (isTextArea) {
     return (
@@ -18,6 +19,7 @@ const InputData = ({
           multiline={true}
           numberOfLines={4}
           placeholder={placeholder}
+          placeholderTextColor={placeholderColor}
           style={styles.textInputArea}
           keyboardType={keyboardType}
           value={value}

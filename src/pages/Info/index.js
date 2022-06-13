@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking, ScrollView} from 'react-native'
 import FIREBASE from '../../config/FIREBASE';
 import NewsItem from '../../components/NewsItem';
+import PaidVideo from '../PaidVideo';
 
 const Info = () => {
     const [news, setNews] = useState ([]);
@@ -27,6 +28,7 @@ const Info = () => {
 
     return (
     <View style={styles.container}>
+      <PaidVideo />
             {news.map(item => {
                 return (
                   <TouchableOpacity onPress={() => openNews(item.link)} key={item.id}>
@@ -48,6 +50,6 @@ const styles = StyleSheet.create({
     container: {
     fontSize: 16,
     marginTop: 10,
-    marginBottom: 16,
+    marginBottom: 80,
     }
 });
