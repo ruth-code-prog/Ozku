@@ -132,9 +132,9 @@ export default class Home extends Component {
                         <DaftarPasien
                           key={key}
                           pasienItem={item}
-                          id={key}
+                          id={item?.id}
                           {...this.props}
-                          removeData={this.removeData}
+                          removeData={() => this.removeData(item?.id)}
                         />
                       ))
                     ) : (
